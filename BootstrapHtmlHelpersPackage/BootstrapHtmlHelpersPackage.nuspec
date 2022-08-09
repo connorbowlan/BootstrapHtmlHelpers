@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package >
-  <metadata>
-    <id>Bootstrap.HTML.Helpers</id>
-    <version>1.0</version>
-    <title>Bootstrap HTML Helpers</title>
-    <authors>Connor Bowlan</authors>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <license type="expression">MIT</license>
-    <projectUrl>https://github.com/connorbowlan/BootstrapHtmlHelpersPackage/</projectUrl>
-    <description>A library of HTML Helpers containing Bootstrap 4.6 attributes.</description>
-    <releaseNotes>Initial alpha release pending further development.</releaseNotes>
-    <copyright>Copyright 2022 Connor Bowlan</copyright>
-    <tags>HTML, Helper, Bootstrap, .NET, Framework</tags>
-  </metadata>
+	<metadata>
+		<id>Bootstrap.HTML.Helpers</id>
+		<version>1.0</version>
+		<title>Bootstrap HTML Helpers</title>
+		<authors>Connor Bowlan</authors>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<license type="expression">MIT</license>
+		<projectUrl>https://github.com/connorbowlan/BootstrapHtmlHelpersPackage/</projectUrl>
+		<description>A library of HTML Helpers containing Bootstrap 4.6 attributes.</description>
+		<releaseNotes>Initial alpha release pending further development.</releaseNotes>
+		<copyright>Copyright 2022 Connor Bowlan</copyright>
+		<tags>HTML, Helper, Bootstrap, .NET, Framework</tags>
+	</metadata>
+
+	<dependencies>
+		<group targetFramework=".NETFramework4.7.1">
+			<dependency id="Bootstrap" version="4.6" />
+		</group>
+	</dependencies>
 </package>
