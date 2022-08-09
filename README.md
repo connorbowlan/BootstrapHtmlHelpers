@@ -1,4 +1,4 @@
-# BootstrapHtmlHelpers
+# Bootstrap HTML Helpers
 A library of HTML Helpers containing Bootstrap 4.6 attributes.
 
 08/08/2022
