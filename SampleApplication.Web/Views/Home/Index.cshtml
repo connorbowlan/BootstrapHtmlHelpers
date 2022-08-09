@@ -1,20 +1,30 @@
 ﻿@using BootstrapHtmlHelpersPackage.Extensions
+@using InputType = BootstrapHtmlHelpersPackage.Enums.InputType
 @model SampleApplication.Web.Models.SampleModel
 
 @using (Html.BeginForm())
 {
-    @Html.FormGroupFor(x => x.Name)
-    @Html.FormSubmitButton("Submit")
+@Html.FormGroupFor(x => x.Name)
+@Html.FormGroupFor(x => x.Email, InputType.Email)
+@Html.FormGroupFor(x => x.PhoneNumber, InputType.Tel)
+@Html.FormGroupFor(x => x.Birthday)
+@Html.FormGroupFor(x => x.Salary)
+@Html.FormGroupFor(x => x.Color, InputType.Color)
+
+@Html.FormSubmitButton("Submit")
 }
 
 @* If jQuery Validation/Validation Unobtrusive are correctly installed in your layout,
     it should not allow the user to submit the form before filling out all required
     fields. If this section appears on your screen after clicking "Submit", you likely
     do not have them installed correctly. *@
+
 @if (Model != null)
 {
-    <div class="my-3">
-        <p>Hello, @Model.Name</p>
-    </div>
-
+<div class="my-3">
+    <p>Hello, @Model.Name.</p>
+    <p>It's so cool that your birthday is on @Model.Birthday.</p>
+    <p>I'd like to make @Model.Salary as well. Maybe if you integrate your views with this package, your company will give you a raise!</p>
+    <p>The hex code for your favorite color is @Model.Color. How cool is that piece of data?</p>
+</div>
 }
