@@ -12,11 +12,11 @@
 		<releaseNotes>Initial alpha release pending further development.</releaseNotes>
 		<copyright>Copyright 2022 Connor Bowlan</copyright>
 		<tags>HTML, Helper, Bootstrap, .NET, Framework</tags>
-	</metadata>
 
-	<dependencies>
-		<group targetFramework=".NETFramework4.7.1">
-			<dependency id="Bootstrap" version="4.6" />
-		</group>
-	</dependencies>
+		<dependencies>
+			<group targetFramework=".NETFramework4.7.1">
+				<dependency id="Bootstrap" version="4.6" />
+			</group>
+		</dependencies>
+	</metadata>
 </package>
