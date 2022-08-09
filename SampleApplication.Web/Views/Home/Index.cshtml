@@ -1,0 +1,20 @@
+﻿@using BootstrapHtmlHelpersPackage.Extensions
+@model SampleApplication.Web.Models.SampleModel
+
+@using (Html.BeginForm())
+{
+    @Html.FormGroupFor(x => x.Name)
+    @Html.FormSubmitButton("Submit")
+}
+
+@* If jQuery Validation/Validation Unobtrusive are correctly installed in your layout,
+    it should not allow the user to submit the form before filling out all required
+    fields. If this section appears on your screen after clicking "Submit", you likely
+    do not have them installed correctly. *@
+@if (Model != null)
+{
+    <div class="my-3">
+        <p>Hello, @Model.Name</p>
+    </div>
+
+}

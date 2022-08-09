@@ -1,0 +1,11 @@
+﻿/* jQuery Validation adds these classes to the input fields
+    as they are actively validated. Feel free to customize this
+    as you see fit.
+*/
+.valid {
+    border: 1px solid #28a745;
+}
+
+.input-validation-error {
+    border: 1px solid #dc3545;
+}
