@@ -5,8 +5,7 @@ namespace BootstrapHtmlHelpersPackage
 {
     public static class AttributeHelper
     {
-        public static void SetInputTypeAttributesByType(this IDictionary<string, object> attributes,
-    InputType inputType)
+        public static void SetInputTypeAttributesByType(this IDictionary<string, object> attributes, InputType inputType)
         {
             switch (inputType)
             {
@@ -102,8 +101,7 @@ namespace BootstrapHtmlHelpersPackage
             }
         }
 
-        public static void SetInputClassAttributesByType(this IDictionary<string, object> attributes,
-            InputType inputType)
+        public static void SetInputClassAttributesByType(this IDictionary<string, object> attributes, InputType inputType)
         {
             switch (inputType)
             {
@@ -197,8 +195,7 @@ namespace BootstrapHtmlHelpersPackage
             }
         }
 
-        public static void SetLabelClassAttributesByType(this IDictionary<string, object> attributes,
-            InputType inputType)
+        public static void SetLabelClassAttributesByType(this IDictionary<string, object> attributes, InputType inputType)
         {
             // If the input type is a checkbox or radio button, the label uses ClassHelper.FormCheckLabelStyleClass.
             if (inputType == InputType.Checkbox || inputType == InputType.Radio)
