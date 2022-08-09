@@ -18,7 +18,7 @@ namespace BootstrapHtmlHelpersPackage
             // If an input type is passed, use that input type.
             if (inputType != InputType.Default)
             {
-                return BootstrapFormHelper.CreateFormGroup(htmlHelper, expression, inputType, format, htmlAttributes);
+                return FormHelper.CreateFormGroup(htmlHelper, expression, inputType, format, htmlAttributes);
             }
 
             var dataType = typeof(TProperty).Name;
@@ -26,28 +26,28 @@ namespace BootstrapHtmlHelpersPackage
             switch (dataType)
             {
                 case "Char":
-                    return BootstrapFormHelper.CreateFormGroup(htmlHelper, expression, InputType.Text, format, htmlAttributes);
+                    return FormHelper.CreateFormGroup(htmlHelper, expression, InputType.Text, format, htmlAttributes);
 
                 case "String":
-                    return BootstrapFormHelper.CreateFormGroup(htmlHelper, expression, InputType.Text, format, htmlAttributes);
+                    return FormHelper.CreateFormGroup(htmlHelper, expression, InputType.Text, format, htmlAttributes);
 
                 case "Int32":
-                    return BootstrapFormHelper.CreateFormGroup(htmlHelper, expression, InputType.Number, format, htmlAttributes);
+                    return FormHelper.CreateFormGroup(htmlHelper, expression, InputType.Number, format, htmlAttributes);
 
                 case "Double":
-                    return BootstrapFormHelper.CreateFormGroup(htmlHelper, expression, InputType.Number, format, htmlAttributes);
+                    return FormHelper.CreateFormGroup(htmlHelper, expression, InputType.Number, format, htmlAttributes);
 
                 case "Int64": // Long
-                    return BootstrapFormHelper.CreateFormGroup(htmlHelper, expression, InputType.Number, format, htmlAttributes);
+                    return FormHelper.CreateFormGroup(htmlHelper, expression, InputType.Number, format, htmlAttributes);
 
                 case "Single": // Float
-                    return BootstrapFormHelper.CreateFormGroup(htmlHelper, expression, InputType.Number, format, htmlAttributes);
+                    return FormHelper.CreateFormGroup(htmlHelper, expression, InputType.Number, format, htmlAttributes);
 
                 case "Boolean":
-                    return BootstrapFormHelper.CreateFormGroup(htmlHelper, expression, InputType.Checkbox, format, htmlAttributes);
+                    return FormHelper.CreateFormGroup(htmlHelper, expression, InputType.Checkbox, format, htmlAttributes);
 
                 case "DateTime":
-                    return BootstrapFormHelper.CreateFormGroup(htmlHelper, expression, InputType.Date, format, htmlAttributes);
+                    return FormHelper.CreateFormGroup(htmlHelper, expression, InputType.Date, format, htmlAttributes);
             }
 
             return MvcHtmlString.Create("The  data type of the property you are passing to @Html.FormGroupFor() is not supported.");
@@ -59,7 +59,7 @@ namespace BootstrapHtmlHelpersPackage
             string optionLabel = null,
             object htmlAttributes = null)
         {
-            return BootstrapFormHelper.CreateFormGroup(htmlHelper, expression, selectList, optionLabel,
+            return FormHelper.CreateFormGroup(htmlHelper, expression, selectList, optionLabel,
                 htmlAttributes);
         }
 
@@ -69,7 +69,7 @@ namespace BootstrapHtmlHelpersPackage
 
         public static MvcHtmlString FormSubmitButton(this HtmlHelper htmlHelper, string value, string id = null, object htmlAttributes = null)
         {
-            return BootstrapFormHelper.CreateFormSubmitButton(htmlHelper, value, id, htmlAttributes);
+            return FormHelper.CreateFormSubmitButton(htmlHelper, value, id, htmlAttributes);
         }
 
         #endregion
@@ -79,7 +79,7 @@ namespace BootstrapHtmlHelpersPackage
         // TODO: Expand to accept a variety of event types instead of just OnClick.
         public static MvcHtmlString JsButton(this HtmlHelper htmlHelper, string value, string onClick, string id = null, object htmlAttributes = null)
         {
-            return BootstrapFormHelper.CreateJsButton(htmlHelper, value, onClick, id, htmlAttributes);
+            return FormHelper.CreateJsButton(htmlHelper, value, onClick, id, htmlAttributes);
         }
 
         #endregion

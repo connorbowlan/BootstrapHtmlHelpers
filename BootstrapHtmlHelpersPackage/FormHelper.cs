@@ -21,7 +21,7 @@ namespace BootstrapHtmlHelpersPackage
     ///     - Populates buttons with ID attributes with the value (required) given after removing the spaces.
     ///     - Applies styles defined in the constants section to their respective elements.
     /// </summary>
-    public static class BootstrapFormHelper
+    public static class FormHelper
     {
         #region Constants
 
