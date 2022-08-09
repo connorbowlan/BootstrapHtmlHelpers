@@ -2,17 +2,19 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Web.Mvc;
+using BootstrapHtmlHelpersPackage.Builders;
+using InputType = BootstrapHtmlHelpersPackage.Enums.InputType;
 
-namespace BootstrapHtmlHelpersPackage
+namespace BootstrapHtmlHelpersPackage.Extensions
 {
-    public static class HtmlExtension
+    public static class FormExtension
     {
         #region FormSubmitButton
 
         public static MvcHtmlString FormSubmitButton(this HtmlHelper htmlHelper, string value, string id = null,
             object htmlAttributes = null)
         {
-            return FormHelper.CreateFormSubmitButton(htmlHelper, value, id, htmlAttributes);
+            return FormBuilder.CreateFormSubmitButton(htmlHelper, value, id, htmlAttributes);
         }
 
         #endregion
@@ -23,7 +25,7 @@ namespace BootstrapHtmlHelpersPackage
         public static MvcHtmlString JsButton(this HtmlHelper htmlHelper, string value, string onClick, string id = null,
             object htmlAttributes = null)
         {
-            return FormHelper.CreateJsButton(htmlHelper, value, onClick, id, htmlAttributes);
+            return FormBuilder.CreateJsButton(htmlHelper, value, onClick, id, htmlAttributes);
         }
 
         #endregion
@@ -39,7 +41,7 @@ namespace BootstrapHtmlHelpersPackage
             // If an input type is passed, use that input type.
             if (inputType != InputType.Default)
             {
-                return FormHelper.CreateFormGroup(htmlHelper, expression, inputType, format, htmlAttributes);
+                return FormBuilder.CreateFormGroup(htmlHelper, expression, inputType, format, htmlAttributes);
             }
 
             var dataType = typeof(TProperty).Name;
@@ -47,29 +49,29 @@ namespace BootstrapHtmlHelpersPackage
             switch (dataType)
             {
                 case "Char":
-                    return FormHelper.CreateFormGroup(htmlHelper, expression, InputType.Text, format, htmlAttributes);
+                    return FormBuilder.CreateFormGroup(htmlHelper, expression, InputType.Text, format, htmlAttributes);
 
                 case "String":
-                    return FormHelper.CreateFormGroup(htmlHelper, expression, InputType.Text, format, htmlAttributes);
+                    return FormBuilder.CreateFormGroup(htmlHelper, expression, InputType.Text, format, htmlAttributes);
 
                 case "Int32":
-                    return FormHelper.CreateFormGroup(htmlHelper, expression, InputType.Number, format, htmlAttributes);
+                    return FormBuilder.CreateFormGroup(htmlHelper, expression, InputType.Number, format, htmlAttributes);
 
                 case "Double":
-                    return FormHelper.CreateFormGroup(htmlHelper, expression, InputType.Number, format, htmlAttributes);
+                    return FormBuilder.CreateFormGroup(htmlHelper, expression, InputType.Number, format, htmlAttributes);
 
                 case "Int64": // Long
-                    return FormHelper.CreateFormGroup(htmlHelper, expression, InputType.Number, format, htmlAttributes);
+                    return FormBuilder.CreateFormGroup(htmlHelper, expression, InputType.Number, format, htmlAttributes);
 
                 case "Single": // Float
-                    return FormHelper.CreateFormGroup(htmlHelper, expression, InputType.Number, format, htmlAttributes);
+                    return FormBuilder.CreateFormGroup(htmlHelper, expression, InputType.Number, format, htmlAttributes);
 
                 case "Boolean":
-                    return FormHelper.CreateFormGroup(htmlHelper, expression, InputType.Checkbox, format,
+                    return FormBuilder.CreateFormGroup(htmlHelper, expression, InputType.Checkbox, format,
                         htmlAttributes);
 
                 case "DateTime":
-                    return FormHelper.CreateFormGroup(htmlHelper, expression, InputType.Date, format, htmlAttributes);
+                    return FormBuilder.CreateFormGroup(htmlHelper, expression, InputType.Date, format, htmlAttributes);
             }
 
             return MvcHtmlString.Create(
@@ -82,7 +84,7 @@ namespace BootstrapHtmlHelpersPackage
             string optionLabel = null,
             object htmlAttributes = null)
         {
-            return FormHelper.CreateFormGroup(htmlHelper, expression, selectList, optionLabel,
+            return FormBuilder.CreateFormGroup(htmlHelper, expression, selectList, optionLabel,
                 htmlAttributes);
         }
 

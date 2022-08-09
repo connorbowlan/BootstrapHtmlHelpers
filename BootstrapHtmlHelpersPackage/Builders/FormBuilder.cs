@@ -4,10 +4,12 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
+using BootstrapHtmlHelpersPackage.Helpers;
+using InputType = BootstrapHtmlHelpersPackage.Enums.InputType;
 
-namespace BootstrapHtmlHelpersPackage
+namespace BootstrapHtmlHelpersPackage.Builders
 {
-    public static class FormHelper
+    public static class FormBuilder
     {
         #region Form Groups
 
@@ -175,7 +177,7 @@ namespace BootstrapHtmlHelpersPackage
             var attributes = HtmlHelper.ObjectToDictionary(htmlAttributes);
 
             attributes.EnsureButtonStyleClass();
-            id = EnsureButtonId(id, value);
+            id = AttributeHelper.EnsureId(id, value);
 
             builder.Attributes.Add("id", id);
             builder.Attributes.Add("name", id);
@@ -195,7 +197,7 @@ namespace BootstrapHtmlHelpersPackage
             var attributes = HtmlHelper.ObjectToDictionary(htmlAttributes);
 
             attributes.EnsureButtonStyleClass();
-            id = EnsureButtonId(id, value);
+            id = AttributeHelper.EnsureId(id, value);
 
             builder.Attributes.Add("id", id);
             builder.Attributes.Add("name", id);
@@ -207,22 +209,6 @@ namespace BootstrapHtmlHelpersPackage
             builder.MergeAttributes(attributes);
 
             return new MvcHtmlString(builder.ToString(TagRenderMode.SelfClosing));
-        }
-
-        private static void EnsureButtonStyleClass(this IDictionary<string, object> attributes)
-        {
-            // If a particular class is not specified, add a Bootstrap button class.
-            if (!attributes.ContainsKey("class"))
-            {
-                attributes.Add("class", DefaultButtonStyleClass);
-            }
-        }
-
-        private static string EnsureButtonId(string id, string value)
-        {
-            // Removes spaces from the value and assigns it as an ID for the submit button if the ID is null.
-            // It is necessary for all of our buttons to contain an ID for automation testing.
-            return id ?? value.Replace(" ", string.Empty);
         }
 
         #endregion

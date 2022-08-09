@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using BootstrapHtmlHelpersPackage.Enums;
 
-namespace BootstrapHtmlHelpersPackage
+namespace BootstrapHtmlHelpersPackage.Helpers
 {
     public static class AttributeHelper
     {
@@ -231,6 +232,22 @@ namespace BootstrapHtmlHelpersPackage
             var message = typeMessage + " " + substituteMessage;
 
             return message;
+        }
+
+        public static void EnsureButtonStyleClass(this IDictionary<string, object> attributes)
+        {
+            // If a particular class is not specified, add a Bootstrap button class.
+            if (!attributes.ContainsKey("class"))
+            {
+                attributes.Add("class", ClassHelper.FormDefaultButtonStyleClass);
+            }
+        }
+
+        public static string EnsureId(string id, string value)
+        {
+            // Removes spaces from the value and assigns it as an ID for the submit button if the ID is null.
+            // It is necessary for all of our buttons to contain an ID for automation testing.
+            return id ?? value.Replace(" ", string.Empty);
         }
     }
 }

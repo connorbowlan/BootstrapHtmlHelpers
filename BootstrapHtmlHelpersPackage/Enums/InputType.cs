@@ -1,4 +1,4 @@
-﻿namespace BootstrapHtmlHelpersPackage
+﻿namespace BootstrapHtmlHelpersPackage.Enums
 {
     /// <summary>
     /// InputType includes any and all types of HTML input element.
