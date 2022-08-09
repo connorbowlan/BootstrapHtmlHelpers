@@ -11,8 +11,7 @@ namespace BootstrapHtmlHelpersPackage.Extensions
     {
         #region FormSubmitButton
 
-        public static MvcHtmlString FormSubmitButton(this HtmlHelper htmlHelper, string value, string id = null,
-            object htmlAttributes = null)
+        public static MvcHtmlString FormSubmitButton(this HtmlHelper htmlHelper, string value, string id = null, object htmlAttributes = null)
         {
             return FormBuilder.CreateFormSubmitButton(htmlHelper, value, id, htmlAttributes);
         }
@@ -22,8 +21,7 @@ namespace BootstrapHtmlHelpersPackage.Extensions
         #region JsButton
 
         // TODO: Expand to accept a variety of event types instead of just OnClick.
-        public static MvcHtmlString JsButton(this HtmlHelper htmlHelper, string value, string onClick, string id = null,
-            object htmlAttributes = null)
+        public static MvcHtmlString JsButton(this HtmlHelper htmlHelper, string value, string onClick, string id = null, object htmlAttributes = null)
         {
             return FormBuilder.CreateJsButton(htmlHelper, value, onClick, id, htmlAttributes);
         }
@@ -84,8 +82,7 @@ namespace BootstrapHtmlHelpersPackage.Extensions
             string optionLabel = null,
             object htmlAttributes = null)
         {
-            return FormBuilder.CreateFormGroup(htmlHelper, expression, selectList, optionLabel,
-                htmlAttributes);
+            return FormBuilder.CreateFormGroup(htmlHelper, expression, selectList, optionLabel, htmlAttributes);
         }
 
         #endregion
