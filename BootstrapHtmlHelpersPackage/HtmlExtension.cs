@@ -7,6 +7,27 @@ namespace BootstrapHtmlHelpersPackage
 {
     public static class HtmlExtension
     {
+        #region FormSubmitButton
+
+        public static MvcHtmlString FormSubmitButton(this HtmlHelper htmlHelper, string value, string id = null,
+            object htmlAttributes = null)
+        {
+            return FormHelper.CreateFormSubmitButton(htmlHelper, value, id, htmlAttributes);
+        }
+
+        #endregion
+
+        #region JsButton
+
+        // TODO: Expand to accept a variety of event types instead of just OnClick.
+        public static MvcHtmlString JsButton(this HtmlHelper htmlHelper, string value, string onClick, string id = null,
+            object htmlAttributes = null)
+        {
+            return FormHelper.CreateJsButton(htmlHelper, value, onClick, id, htmlAttributes);
+        }
+
+        #endregion
+
         #region FormGroupFor
 
         public static MvcHtmlString FormGroupFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper,
@@ -44,13 +65,15 @@ namespace BootstrapHtmlHelpersPackage
                     return FormHelper.CreateFormGroup(htmlHelper, expression, InputType.Number, format, htmlAttributes);
 
                 case "Boolean":
-                    return FormHelper.CreateFormGroup(htmlHelper, expression, InputType.Checkbox, format, htmlAttributes);
+                    return FormHelper.CreateFormGroup(htmlHelper, expression, InputType.Checkbox, format,
+                        htmlAttributes);
 
                 case "DateTime":
                     return FormHelper.CreateFormGroup(htmlHelper, expression, InputType.Date, format, htmlAttributes);
             }
 
-            return MvcHtmlString.Create("The  data type of the property you are passing to @Html.FormGroupFor() is not supported.");
+            return MvcHtmlString.Create(
+                "The  data type of the property you are passing to @Html.FormGroupFor() is not supported.");
         }
 
         public static MvcHtmlString FormGroupFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper,
@@ -61,25 +84,6 @@ namespace BootstrapHtmlHelpersPackage
         {
             return FormHelper.CreateFormGroup(htmlHelper, expression, selectList, optionLabel,
                 htmlAttributes);
-        }
-
-        #endregion
-
-        #region FormSubmitButton
-
-        public static MvcHtmlString FormSubmitButton(this HtmlHelper htmlHelper, string value, string id = null, object htmlAttributes = null)
-        {
-            return FormHelper.CreateFormSubmitButton(htmlHelper, value, id, htmlAttributes);
-        }
-
-        #endregion
-
-        #region JsButton
-
-        // TODO: Expand to accept a variety of event types instead of just OnClick.
-        public static MvcHtmlString JsButton(this HtmlHelper htmlHelper, string value, string onClick, string id = null, object htmlAttributes = null)
-        {
-            return FormHelper.CreateJsButton(htmlHelper, value, onClick, id, htmlAttributes);
         }
 
         #endregion
