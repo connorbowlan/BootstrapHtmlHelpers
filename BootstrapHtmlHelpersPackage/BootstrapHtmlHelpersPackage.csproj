@@ -61,6 +61,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\AccessbilityType.cs" />
+    <Compile Include="Helpers\AccessibilityHelper.cs" />
     <Compile Include="Helpers\AttributeHelper.cs" />
     <Compile Include="Helpers\ClassHelper.cs" />
     <Compile Include="Builders\FormBuilder.cs" />

@@ -67,6 +67,10 @@ namespace BootstrapHtmlHelpersPackage.Builders
 
             attributes.SetLabelClassAttributesByType(inputType);
 
+            // TODO: Assess whether this is actually necessary to do with W3 Standards.
+            //var id = ModelMetadata.FromLambdaExpression(expression, htmlHelper.ViewData).PropertyName;
+            //attributes.SetAccessibilityAttributesByType(id, AccessibilityType.Label);
+
             return htmlHelper.LabelFor(expression, attributes);
         }
 
@@ -102,6 +106,10 @@ namespace BootstrapHtmlHelpersPackage.Builders
             // No htmlAttributes specified, use defaults.
             attributes.SetInputTypeAttributesByType(inputType);
             attributes.SetInputClassAttributesByType(inputType);
+
+            // TODO: Assess whether this is actually necessary to do with W3 Standards.
+            //var id = ModelMetadata.FromLambdaExpression(expression, htmlHelper.ViewData).PropertyName;
+            //attributes.SetAccessibilityAttributesByType(id, AccessibilityType.FormControl);
 
             return htmlHelper.TextBoxFor(expression, format, attributes);
         }
