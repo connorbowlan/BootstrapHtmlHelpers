@@ -23,9 +23,9 @@ namespace BootstrapHtmlHelpersPackage
         public const string FormControlFileStyleClass = "form-control-file";
 
         // CSS classes used to style validation results via jQuery Unobtrusive Validation.
-        public const string ValidationMessageStyleClass = "text-danger";
+        public const string FormValidationMessageStyleClass = "text-danger";
 
         // CSS classes used to style buttons.
-        public const string DefaultButtonStyleClass = "btn btn-primary";
+        public const string FormDefaultButtonStyleClass = "btn btn-primary";
     }
 }

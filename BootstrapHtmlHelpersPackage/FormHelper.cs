@@ -133,7 +133,7 @@ namespace BootstrapHtmlHelpersPackage
         {
             var attributes = new Dictionary<string, object>();
 
-            attributes.AddClass(ClassHelper.ValidationMessageStyleClass);
+            attributes.AddClass(ClassHelper.FormValidationMessageStyleClass);
 
             return htmlHelper.ValidationMessageFor(expression, null, attributes);
         }
