@@ -61,6 +61,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AttributeHelper.cs" />
+    <Compile Include="ClassHelper.cs" />
     <Compile Include="FormHelper.cs" />
     <Compile Include="HtmlExtension.cs" />
     <Compile Include="InputType.cs" />

@@ -9,30 +9,6 @@ namespace BootstrapHtmlHelpersPackage
 {
     public static class FormHelper
     {
-        #region Constants
-
-        // HTML and CSS classes used to construct a standard form group, or a form group for a check box or radio button.
-        private const string FormGroupOpenHtml = "<div class=\"form-group\">";
-        private const string FormCheckOpenHtml = "<div class=\"form-group form-check\">";
-        private const string FormGroupCloseHtml = "</div>";
-
-        // CSS classes used to style a standard input label, or an input label for a check box or radio button.
-        private const string FormLabelStyleClass = "form-label";
-        private const string FormCheckLabelStyleClass = "form-check-label";
-
-        // CSS classes used to style a standard input field, or any other type potentially specified.
-        private const string FormControlStyleClass = "form-control";
-        private const string FormCheckInputStyleClass = "form-check-input";
-        private const string FormControlFileStyleClass = "form-control-file";
-
-        // CSS classes used to style validation results via jQuery Unobtrusive Validation.
-        private const string ValidationMessageStyleClass = "text-danger";
-
-        // CSS classes used to style buttons.
-        private const string DefaultButtonStyleClass = "btn btn-primary";
-
-        #endregion
-
         #region Form Groups
 
         public static MvcHtmlString CreateFormGroup<TModel, TProperty>(HtmlHelper<TModel> htmlHelper,
@@ -157,7 +133,7 @@ namespace BootstrapHtmlHelpersPackage
         {
             var attributes = new Dictionary<string, object>();
 
-            attributes.AddClass(ValidationMessageStyleClass);
+            attributes.AddClass(ClassHelper.ValidationMessageStyleClass);
 
             return htmlHelper.ValidationMessageFor(expression, null, attributes);
         }
@@ -169,249 +145,18 @@ namespace BootstrapHtmlHelpersPackage
             // If the input type is a checkbox or radio button, the group uses FormCheckOpenHtml.
             if (inputType == InputType.Checkbox || inputType == InputType.Radio)
             {
-                html.Append(FormCheckOpenHtml);
+                html.Append(ClassHelper.FormCheckOpenHtml);
             }
             else
             {
-                html.Append(FormGroupOpenHtml);
+                html.Append(ClassHelper.FormGroupOpenHtml);
             }
 
             html.Append(content);
 
-            html.Append(FormGroupCloseHtml);
+            html.Append(ClassHelper.FormGroupCloseHtml);
 
             return html.ToString();
-        }
-
-        private static void SetInputTypeAttributesByType(this IDictionary<string, object> attributes,
-            InputType inputType)
-        {
-            switch (inputType)
-            {
-                case InputType.Default:
-                    attributes.AddType("text");
-                    break;
-
-                case InputType.Button:
-                    throw new NotImplementedException(TypeExceptionMessage("Button"));
-
-                case InputType.Checkbox:
-                    attributes.AddType("checkbox");
-                    break;
-
-                case InputType.Color:
-                    attributes.AddType("color");
-                    break;
-
-                case InputType.Date:
-                    attributes.AddType("date");
-                    break;
-
-                case InputType.DateTimeLocal:
-                    throw new NotImplementedException(TypeExceptionMessage("DateTimeLocal", "Date"));
-
-                case InputType.Email:
-                    attributes.AddType("email");
-                    break;
-
-                case InputType.File:
-                    attributes.AddType("file");
-                    break;
-
-                case InputType.Hidden:
-                    throw new InvalidOperationException(TypeExceptionMessage("Hidden", "@Html.HiddenFor()"));
-
-                case InputType.Image:
-                    attributes.AddType("image");
-                    break;
-
-                case InputType.Month:
-                    throw new NotImplementedException(TypeExceptionMessage("Month", "Date"));
-
-                case InputType.Number:
-                    attributes.AddType("number");
-                    break;
-
-                case InputType.Password:
-                    attributes.AddType("password");
-                    break;
-
-                case InputType.Radio:
-                    attributes.AddType("radio");
-                    break;
-
-                case InputType.Range:
-                    attributes.AddType("range");
-                    break;
-
-                case InputType.Reset:
-                    attributes.AddType("reset");
-                    throw new InvalidOperationException(TypeExceptionMessage("Reset"));
-
-                case InputType.Search:
-                    attributes.AddType("search");
-                    break;
-
-                case InputType.Submit:
-                    attributes.AddType("submit");
-                    throw new InvalidOperationException(TypeExceptionMessage("Submit", "@Html.Submit()"));
-
-                case InputType.Tel:
-                    attributes.AddType("tel");
-                    break;
-
-                case InputType.Text:
-                    attributes.AddType("text");
-                    break;
-
-                case InputType.Time:
-                    throw new NotImplementedException(TypeExceptionMessage("Time", "Date"));
-
-                case InputType.Url:
-                    attributes.AddType("url");
-                    break;
-
-                case InputType.Week:
-                    throw new NotImplementedException(TypeExceptionMessage("Week", "Date"));
-
-                default:
-                    // Should never occur.
-                    throw new ArgumentOutOfRangeException(nameof(inputType), inputType, null);
-            }
-        }
-
-        private static void SetInputClassAttributesByType(this IDictionary<string, object> attributes,
-            InputType inputType)
-        {
-            switch (inputType)
-            {
-                case InputType.Default:
-                    attributes.AddClass(FormControlStyleClass);
-                    break;
-
-                case InputType.Button:
-                    throw new NotImplementedException(TypeExceptionMessage("Button"));
-
-                case InputType.Checkbox:
-                    attributes.AddClass(FormCheckInputStyleClass);
-                    break;
-
-                case InputType.Color:
-                    attributes.AddClass(FormControlStyleClass);
-                    break;
-
-                case InputType.Date:
-                    attributes.AddClass(FormControlStyleClass);
-                    break;
-
-                case InputType.DateTimeLocal:
-                    throw new NotImplementedException(TypeExceptionMessage("DateTimeLocal", "Date"));
-
-                case InputType.Email:
-                    attributes.AddClass(FormControlStyleClass);
-                    break;
-
-                case InputType.File:
-                    attributes.AddClass(FormControlFileStyleClass);
-                    break;
-
-                case InputType.Hidden:
-                    throw new InvalidOperationException(TypeExceptionMessage("Hidden", "@Html.HiddenFor()"));
-
-                case InputType.Image:
-                    attributes.AddClass(FormControlStyleClass);
-                    break;
-
-                case InputType.Month:
-                    throw new NotImplementedException(TypeExceptionMessage("Month", "Date"));
-
-                case InputType.Number:
-                    attributes.AddClass(FormControlStyleClass);
-                    break;
-
-                case InputType.Password:
-                    attributes.AddClass(FormControlStyleClass);
-                    break;
-
-                case InputType.Radio:
-                    attributes.AddClass(FormCheckInputStyleClass);
-                    break;
-
-                case InputType.Range:
-                    attributes.AddClass(FormControlStyleClass);
-                    break;
-
-                case InputType.Reset:
-                    throw new InvalidOperationException(TypeExceptionMessage("Reset"));
-
-                case InputType.Search:
-                    attributes.AddClass(FormControlStyleClass);
-                    break;
-
-                case InputType.Submit:
-                    throw new InvalidOperationException(TypeExceptionMessage("Submit", "@Html.Submit()"));
-
-                case InputType.Tel:
-                    attributes.AddClass(FormControlStyleClass);
-                    break;
-
-                case InputType.Text:
-                    attributes.AddClass(FormControlStyleClass);
-                    break;
-
-                case InputType.Time:
-                    throw new NotImplementedException(TypeExceptionMessage("Time", "Date"));
-
-                case InputType.Url:
-                    attributes.AddClass(FormControlStyleClass);
-                    break;
-
-                case InputType.Week:
-                    throw new NotImplementedException(TypeExceptionMessage("Week", "Date"));
-
-                default:
-                    // Should never occur.
-                    throw new ArgumentOutOfRangeException(nameof(inputType), inputType, null);
-            }
-        }
-
-        private static void SetLabelClassAttributesByType(this IDictionary<string, object> attributes,
-            InputType inputType)
-        {
-            // If the input type is a checkbox or radio button, the label uses FormCheckLabelStyleClass.
-            if (inputType == InputType.Checkbox || inputType == InputType.Radio)
-            {
-                attributes.AddClass(FormCheckLabelStyleClass);
-            }
-            else
-            {
-                attributes.AddClass(FormLabelStyleClass);
-            }
-        }
-
-        private static void AddType(this IDictionary<string, object> attributes, string type)
-        {
-            attributes.Add("type", type);
-        }
-
-        private static void AddClass(this IDictionary<string, object> attributes, string @class)
-        {
-            attributes.Add("class", @class);
-        }
-
-        private static string TypeExceptionMessage(string type, string substitute = null)
-        {
-            var typeMessage =
-                $"{type} is an input type that is not yet implemented or should not be used with @Html.FormGroup() or @Html.FormGroupFor().";
-
-            var substituteMessage = string.Empty;
-
-            if (substitute != null)
-                substituteMessage = $"Please use {substitute} instead.";
-
-            var message = typeMessage + " " + substituteMessage;
-
-            return message;
         }
 
         #endregion
