@@ -11,7 +11,7 @@ namespace BootstrapHtmlHelpersPackage.Builders
 {
     public static class FormBuilder
     {
-        #region Form Groups
+        #region Form Group
 
         public static MvcHtmlString CreateFormGroup<TModel, TProperty>(HtmlHelper<TModel> htmlHelper,
             Expression<Func<TModel, TProperty>> expression,
@@ -20,7 +20,7 @@ namespace BootstrapHtmlHelpersPackage.Builders
             object htmlAttributes = null)
         {
             var label = CreateLabel(htmlHelper, expression, inputType);
-            var inputField = CreateInputField(htmlHelper, expression, inputType, format, htmlAttributes);
+            var inputField = CreateFormControl(htmlHelper, expression, inputType, format, htmlAttributes);
             var validationMessage = CreateValidationMessage(htmlHelper, expression);
 
             string content;
@@ -47,7 +47,7 @@ namespace BootstrapHtmlHelpersPackage.Builders
             object htmlAttributes = null)
         {
             var label = CreateLabel(htmlHelper, expression, InputType.Default);
-            var dropdownField = CreateDropDownField(htmlHelper, expression, selectList, optionLabel, htmlAttributes);
+            var dropdownField = CreateDropDown(htmlHelper, expression, selectList, optionLabel, htmlAttributes);
             var validationMessage = CreateValidationMessage(htmlHelper, expression);
 
             var content = label + dropdownField.ToString() + validationMessage;
@@ -57,8 +57,9 @@ namespace BootstrapHtmlHelpersPackage.Builders
             return MvcHtmlString.Create(formGroup);
         }
 
+        #endregion
 
-        #region Label, Input Field, Dropdown Field (SelectList/Enum), and Validation Message
+        #region Label
 
         private static MvcHtmlString CreateLabel<TModel, TProperty>(HtmlHelper<TModel> htmlHelper,
             Expression<Func<TModel, TProperty>> expression, InputType inputType)
@@ -74,7 +75,11 @@ namespace BootstrapHtmlHelpersPackage.Builders
             return htmlHelper.LabelFor(expression, attributes);
         }
 
-        private static MvcHtmlString CreateInputField<TModel, TProperty>(HtmlHelper<TModel> htmlHelper,
+        #endregion
+
+        #region Form Control
+
+        private static MvcHtmlString CreateFormControl<TModel, TProperty>(HtmlHelper<TModel> htmlHelper,
             Expression<Func<TModel, TProperty>> expression, InputType inputType, string format = null,
             object htmlAttributes = null)
         {
@@ -114,7 +119,11 @@ namespace BootstrapHtmlHelpersPackage.Builders
             return htmlHelper.TextBoxFor(expression, format, attributes);
         }
 
-        public static MvcHtmlString CreateDropDownField<TModel, TProperty>(HtmlHelper<TModel> htmlHelper,
+        #endregion
+
+        #region Drop Down
+
+        public static MvcHtmlString CreateDropDown<TModel, TProperty>(HtmlHelper<TModel> htmlHelper,
             Expression<Func<TModel, TProperty>> expression,
             IEnumerable<SelectListItem> selectList,
             string optionLabel = null,
@@ -137,6 +146,10 @@ namespace BootstrapHtmlHelpersPackage.Builders
 
             return htmlHelper.DropDownListFor(expression, selectList, optionLabel, attributes);
         }
+
+        #endregion
+
+        #region Validation Message
 
         private static MvcHtmlString CreateValidationMessage<TModel, TProperty>(HtmlHelper<TModel> htmlHelper,
             Expression<Func<TModel, TProperty>> expression)
@@ -171,9 +184,7 @@ namespace BootstrapHtmlHelpersPackage.Builders
 
         #endregion
 
-        #endregion
-
-        #region FormSubmitButton
+        #region Submit Button
 
         public static MvcHtmlString CreateFormSubmitButton(HtmlHelper helper,
             string value,
