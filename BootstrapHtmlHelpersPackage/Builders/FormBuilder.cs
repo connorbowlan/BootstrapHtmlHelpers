@@ -17,10 +17,18 @@ namespace BootstrapHtmlHelpersPackage.Builders
             Expression<Func<TModel, TProperty>> expression,
             InputType inputType,
             string format = null,
+            string helpText = null,
             object htmlAttributes = null)
         {
             var label = CreateLabel(htmlHelper, expression, inputType);
             var inputField = CreateFormControl(htmlHelper, expression, inputType, format, htmlAttributes);
+
+            if (helpText != null)
+            {
+                var id = ModelMetadata.FromLambdaExpression(expression, htmlHelper.ViewData).PropertyName;
+                helpText = CreateHelpText(id, helpText);
+            }
+
             var validationMessage = CreateValidationMessage(htmlHelper, expression);
 
             string content;
@@ -28,11 +36,11 @@ namespace BootstrapHtmlHelpersPackage.Builders
             // If the input type is a checkbox or a radio button, the label comes second.
             if (inputType == InputType.Checkbox || inputType == InputType.Radio)
             {
-                content = inputField.ToString() + label + validationMessage;
+                content = inputField.ToString() + label + helpText + validationMessage;
             }
             else
             {
-                content = label + inputField.ToString() + validationMessage;
+                content = label + inputField.ToString() + helpText + validationMessage;
             }
 
             var formGroup = WrapFormGroup(inputType, content);
@@ -145,6 +153,22 @@ namespace BootstrapHtmlHelpersPackage.Builders
             attributes.SetInputClassAttributesByType(InputType.Default);
 
             return htmlHelper.DropDownListFor(expression, selectList, optionLabel, attributes);
+        }
+
+        #endregion
+
+        #region Help Text
+
+        public static string CreateHelpText(string id, string helpText)
+        {
+            var tagBuilder = new TagBuilder("small");
+
+            tagBuilder.MergeAttribute("id", id);
+            tagBuilder.MergeAttribute("class", "form-text");
+            tagBuilder.SetInnerText(helpText);
+
+            return tagBuilder.ToString();
+
         }
 
         #endregion
