@@ -18,16 +18,6 @@ namespace BootstrapHtmlHelpersPackage.Extensions
 
         #endregion
 
-        #region JsButton
-
-        // TODO: Expand to accept a variety of event types instead of just OnClick.
-        public static MvcHtmlString JsButton(this HtmlHelper htmlHelper, string value, string onClick, string id = null, object htmlAttributes = null)
-        {
-            return FormBuilder.CreateJsButton(htmlHelper, value, onClick, id, htmlAttributes);
-        }
-
-        #endregion
-
         #region FormGroupFor
 
         public static MvcHtmlString FormGroupFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper,

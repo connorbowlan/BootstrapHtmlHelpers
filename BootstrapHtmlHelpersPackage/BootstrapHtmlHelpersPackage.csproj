@@ -61,7 +61,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Builders\JsBuilder.cs" />
     <Compile Include="Enums\AccessbilityType.cs" />
+    <Compile Include="Extensions\JsExtension.cs" />
     <Compile Include="Helpers\AccessibilityHelper.cs" />
     <Compile Include="Helpers\AttributeHelper.cs" />
     <Compile Include="Helpers\ClassHelper.cs" />
