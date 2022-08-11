@@ -1,5 +1,9 @@
 ﻿namespace BootstrapHtmlHelpersPackage.Helpers
 {
+    /// <summary>
+    /// These classes are defined by Bootstrap v4.6.
+    /// See https://getbootstrap.com/docs/4.6/getting-started/introduction/ for documentation.
+    /// </summary>
     public static class ClassHelper
     {
         // HTML and CSS classes used to construct a standard form group, or a form group for a check box or radio button.
@@ -10,6 +14,9 @@
         // CSS classes used to style a standard input label, or an input label for a check box or radio button.
         public const string FormLabelStyleClass = "form-label";
         public const string FormCheckLabelStyleClass = "form-check-label";
+
+        // CSS class used to style help text beneath form controls.
+        public const string FormHelpText = "form-text";
 
         // CSS classes used to style a standard input field, or any other type potentially specified.
         public const string FormControlStyleClass = "form-control";

@@ -26,6 +26,7 @@ namespace BootstrapHtmlHelpersPackage.Builders
             if (helpText != null)
             {
                 var id = ModelMetadata.FromLambdaExpression(expression, htmlHelper.ViewData).PropertyName;
+
                 helpText = CreateHelpText(id, helpText);
             }
 
@@ -52,13 +53,22 @@ namespace BootstrapHtmlHelpersPackage.Builders
             Expression<Func<TModel, TProperty>> expression,
             IEnumerable<SelectListItem> selectList,
             string optionLabel = null,
+            string helpText = null,
             object htmlAttributes = null)
         {
             var label = CreateLabel(htmlHelper, expression, InputType.Default);
             var dropdownField = CreateDropDown(htmlHelper, expression, selectList, optionLabel, htmlAttributes);
+
+            if (helpText != null)
+            {
+                var id = ModelMetadata.FromLambdaExpression(expression, htmlHelper.ViewData).PropertyName;
+
+                helpText = CreateHelpText(id, helpText);
+            }
+
             var validationMessage = CreateValidationMessage(htmlHelper, expression);
 
-            var content = label + dropdownField.ToString() + validationMessage;
+            var content = label + dropdownField.ToString() + helpText + validationMessage;
 
             var formGroup = WrapFormGroup(InputType.Default, content);
 
@@ -70,15 +80,12 @@ namespace BootstrapHtmlHelpersPackage.Builders
         #region Label
 
         private static MvcHtmlString CreateLabel<TModel, TProperty>(HtmlHelper<TModel> htmlHelper,
-            Expression<Func<TModel, TProperty>> expression, InputType inputType)
+            Expression<Func<TModel, TProperty>> expression,
+            InputType inputType)
         {
             var attributes = new Dictionary<string, object>();
 
             attributes.SetLabelClassAttributesByType(inputType);
-
-            // TODO: Assess whether this is actually necessary to do with W3 Standards.
-            //var id = ModelMetadata.FromLambdaExpression(expression, htmlHelper.ViewData).PropertyName;
-            //attributes.SetAccessibilityAttributesByType(id, AccessibilityType.Label);
 
             return htmlHelper.LabelFor(expression, attributes);
         }
@@ -88,7 +95,9 @@ namespace BootstrapHtmlHelpersPackage.Builders
         #region Form Control
 
         private static MvcHtmlString CreateFormControl<TModel, TProperty>(HtmlHelper<TModel> htmlHelper,
-            Expression<Func<TModel, TProperty>> expression, InputType inputType, string format = null,
+            Expression<Func<TModel, TProperty>> expression,
+            InputType inputType,
+            string format = null,
             object htmlAttributes = null)
         {
             var attributes = HtmlHelper.ObjectToDictionary(htmlAttributes);
@@ -119,10 +128,6 @@ namespace BootstrapHtmlHelpersPackage.Builders
             // No htmlAttributes specified, use defaults.
             attributes.SetInputTypeAttributesByType(inputType);
             attributes.SetInputClassAttributesByType(inputType);
-
-            // TODO: Assess whether this is actually necessary to do with W3 Standards.
-            //var id = ModelMetadata.FromLambdaExpression(expression, htmlHelper.ViewData).PropertyName;
-            //attributes.SetAccessibilityAttributesByType(id, AccessibilityType.FormControl);
 
             return htmlHelper.TextBoxFor(expression, format, attributes);
         }
@@ -163,12 +168,11 @@ namespace BootstrapHtmlHelpersPackage.Builders
         {
             var tagBuilder = new TagBuilder("small");
 
-            tagBuilder.MergeAttribute("id", id);
-            tagBuilder.MergeAttribute("class", "form-text");
+            tagBuilder.MergeAttribute("id", id + "Help");
+            tagBuilder.MergeAttribute("class", ClassHelper.FormHelpText);
             tagBuilder.SetInnerText(helpText);
 
             return tagBuilder.ToString();
-
         }
 
         #endregion

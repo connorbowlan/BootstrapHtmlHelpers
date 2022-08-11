@@ -33,9 +33,23 @@ namespace BootstrapHtmlHelpersPackage.Extensions
                 return FormBuilder.CreateFormGroup(htmlHelper, expression, inputType, format, helpText, htmlAttributes);
             }
 
-            var dataType = typeof(TProperty).Name;
+            string propertyType;
 
-            switch (dataType)
+            var dataType = typeof(TProperty);
+
+            var nullableType = Nullable.GetUnderlyingType(dataType);
+
+            // Property is a nullable data type. Assess and get the base type.
+            if (nullableType?.FullName != null)
+            {
+                propertyType = nullableType.FullName.Remove(0, 7);
+            }
+            else
+            {
+                propertyType = dataType.Name;
+            }
+
+            switch (propertyType)
             {
                 case "Char":
                     return FormBuilder.CreateFormGroup(htmlHelper, expression, InputType.Text, format, helpText, htmlAttributes);
@@ -56,14 +70,14 @@ namespace BootstrapHtmlHelpersPackage.Extensions
                     return FormBuilder.CreateFormGroup(htmlHelper, expression, InputType.Number, format, helpText, htmlAttributes);
 
                 case "Boolean":
-                    return FormBuilder.CreateFormGroup(htmlHelper, expression, InputType.Checkbox, format,
-                        helpText, htmlAttributes);
+                    return FormBuilder.CreateFormGroup(htmlHelper, expression, InputType.Checkbox, format, helpText, htmlAttributes);
 
                 case "DateTime":
                     return FormBuilder.CreateFormGroup(htmlHelper, expression, InputType.Date, format, helpText, htmlAttributes);
             }
 
-            return MvcHtmlString.Create("The data type of the property you are passing to @Html.FormGroupFor() is not supported.");
+            throw new InvalidOperationException(
+                $"The data type \"{dataType}\" the property you are passing to @Html.FormGroupFor() is not supported.");
         }
 
 
@@ -71,9 +85,11 @@ namespace BootstrapHtmlHelpersPackage.Extensions
             Expression<Func<TModel, TProperty>> expression,
             IEnumerable<SelectListItem> selectList,
             string optionLabel = null,
+            string helpText = null,
+            bool disableValidation = false,
             object htmlAttributes = null)
         {
-            return FormBuilder.CreateFormGroup(htmlHelper, expression, selectList, optionLabel, htmlAttributes);
+            return FormBuilder.CreateFormGroup(htmlHelper, expression, selectList, optionLabel, helpText, htmlAttributes);
         }
 
         #endregion
