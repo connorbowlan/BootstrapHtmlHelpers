@@ -2,31 +2,81 @@
 @using InputType = BootstrapHtmlHelpersPackage.Enums.InputType
 @model SampleApplication.Web.Models.SampleModel
 
-<h1>A Really, Really Cool Form</h1>
+<h1>Bootstrap HTML Helpers Demo/Cheat Sheet</h1>
+<hr />
+<p class="lead">See /Models/SampleModel.cs to review any data annotations creating validation for these examples.</p>
+<p class="lead">See <a href="https://docs.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations?view=netframework-4.7.1">System.ComponentModel.DataAnnotations Namespace</a> for documentation on data annotations.</p>
 
-@using (Html.BeginForm())
-{
-    @Html.FormGroupFor(x => x.Name)
-    @Html.FormGroupFor(x => x.Email, InputType.Email)
-    @Html.FormGroupFor(x => x.PhoneNumber, InputType.Tel)
-    @Html.FormGroupFor(x => x.Birthday)
-    @Html.FormGroupFor(x => x.Salary)
-    @Html.FormGroupFor(x => x.Color, InputType.Color)
+<b>Dependencies</b>
+<ul>
+    <li><a href="https://dotnet.microsoft.com/en-us/download/dotnet-framework/net471">.NET Framework v4.7.1</a></li>
+    <li><a href="https://getbootstrap.com/docs/4.6/getting-started/introduction/">Bootstrap v4.6</a></li>
+    <li><a href="https://jquery.com/download/">jQuery v3.6</a></li>
+    <li><a href="https://jqueryvalidation.org/">jQuery Validation v1.2</a></li>
+    <li><a href="https://www.nuget.org/packages/Microsoft.jQuery.Unobtrusive.Validation">jQuery Validation Unobtrusive v4.0</a></li>
+</ul>
 
-    @Html.FormSubmitButton("Submit")
-}
+<b>Table of Contents</b>
+<ul>
+    <li><a href="#Strings">Strings</a></li>
+    <li><a href="#DateTime">DateTime</a></li>
+</ul>
 
-@* If jQuery Validation/Validation Unobtrusive are correctly installed in your layout,
-    it should not allow the user to submit the form before filling out all required
-    fields. If this section appears on your screen after clicking "Submit", you likely
-    do not have them installed correctly. *@
+<p>Last updated 08/11/2022.</p>
 
-@if (Model != null)
-{
-    <div class="my-3">
-        <p>Hello, @Model.Name.</p>
-        <p>It's so cool that your birthday is on @Model.Birthday.</p>
-        <p>I'd like to make @Model.Salary as well. Maybe if you integrate your views with this package, your company will give you a raise!</p>
-        <p>The hex code for your favorite color is @Model.Color. How cool is that piece of data?</p>
-    </div>
-}
+<div id="Strings" class="mb-3">
+    <h2>Strings</h2>
+    <hr />
+    @using (Html.BeginForm())
+    {
+        <h3>Text</h3>
+        @Html.FormGroupFor(x => x.Name)
+        <pre>Html.FormGroupFor(x => x.Name)</pre>
+
+        <h3>Email</h3>
+        @Html.FormGroupFor(x => x.Email, InputType.Email)
+        <pre>Html.FormGroupFor(x => x.Email, InputType.Email)</pre>
+
+        <h3>Tel</h3>
+        @Html.FormGroupFor(x => x.PhoneNumber, InputType.Tel)
+        <pre>Html.FormGroupFor(x => x.PhoneNumber, InputType.Tel)</pre>
+
+        <h3>Date</h3>
+        @Html.FormGroupFor(x => x.DateOfBirthString, InputType.Date)
+        <pre>Html.FormGroupFor(x => x.DateOfBirthString, InputType.Date)</pre>
+
+        <h3>File</h3>
+        @Html.FormGroupFor(x => x.File, InputType.File)
+        <pre>Html.FormGroupFor(x => x.File, InputType.File)</pre>
+
+        <h3>Color</h3>
+        @Html.FormGroupFor(x => x.Color, InputType.Color)
+        <pre>Html.FormGroupFor(x => x.Color, InputType.Color)</pre>
+    }
+</div>
+
+<div id="DateTime" class="mb-3">
+    <h2>DateTime</h2>
+    <hr />
+    @using (Html.BeginForm())
+    {
+        <h3>Date</h3>
+        @Html.FormGroupFor(x => x.DateOfBirth)
+        <pre>Html.FormGroupFor(x => x.DateOfBirth)</pre>
+    }
+</div>
+
+<div id="Boolean" class="mb-3">
+    <h2>Boolean</h2>
+    <hr />
+    @using (Html.BeginForm())
+    {
+        <h3>Checkbox</h3>
+        @Html.FormGroupFor(x => x.Option)
+        <pre>Html.FormGroupFor(x => x.Option)</pre>
+
+        <h3>Radio</h3>
+        @Html.FormGroupFor(x => x.Option, InputType.Radio)
+        <pre>Html.FormGroupFor(x => x.Option, InputType.Radio)</pre>
+    }
+</div>

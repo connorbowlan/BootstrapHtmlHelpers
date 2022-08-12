@@ -9,3 +9,13 @@
 .input-validation-error {
     border: 1px solid #dc3545;
 }
+
+/*
+    Demo styles
+    Classes to make the demo more visually appealing.
+*/
+pre {
+    background: #eaeaea;
+    color: #e83e8c !important;
+    padding: 0.8rem;
+}

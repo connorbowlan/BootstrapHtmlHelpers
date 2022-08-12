@@ -8,14 +8,16 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="container">
-        <div class="row justify-content-md-center">
-            <div class="col">
-                @RenderBody()
+    <main>
+        <div class="container mt-3">
+            <div class="row justify-content-md-center">
+                <div class="col">
+                    @RenderBody()
 
+                </div>
             </div>
         </div>
-    </div>
+    </main>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
