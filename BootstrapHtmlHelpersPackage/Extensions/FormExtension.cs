@@ -86,11 +86,20 @@ namespace BootstrapHtmlHelpersPackage.Extensions
             IEnumerable<SelectListItem> selectList,
             string optionLabel = null,
             string helpText = null,
-            bool disableValidation = false,
             object htmlAttributes = null)
         {
             return FormBuilder.CreateFormGroup(htmlHelper, expression, selectList, optionLabel, helpText, htmlAttributes);
         }
+
+        // TODO: Determine a good way to implement EnumDropDownListFor().
+        //public static MvcHtmlString FormGroupFor<TModel, TEnum>(this HtmlHelper<TModel> htmlHelper,
+        //    Expression<Func<TModel, TEnum>> expression,
+        //    string optionLabel = null,
+        //    string helpText = null,
+        //    object htmlAttributes = null)
+        //{
+        //    return FormBuilder.CreateFormGroup(htmlHelper, expression, optionLabel, helpText, htmlAttributes);
+        //}
 
         #endregion
     }

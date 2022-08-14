@@ -75,13 +75,38 @@ namespace BootstrapHtmlHelpersPackage.Builders
             return MvcHtmlString.Create(formGroup);
         }
 
+        public static MvcHtmlString CreateFormGroup<TModel, TEnum>(HtmlHelper<TModel> htmlHelper,
+            Expression<Func<TModel, TEnum>> expression,
+            string optionLabel = null,
+            string helpText = null,
+            object htmlAttributes = null)
+        {
+            var label = CreateLabel(htmlHelper, expression, InputType.Default);
+            var dropdownField = CreateDropDown(htmlHelper, expression, optionLabel, htmlAttributes);
+
+            if (helpText != null)
+            {
+                var id = ModelMetadata.FromLambdaExpression(expression, htmlHelper.ViewData).PropertyName;
+
+                helpText = CreateHelpText(id, helpText);
+            }
+
+            var validationMessage = CreateValidationMessage(htmlHelper, expression);
+
+            var content = label + dropdownField.ToString() + helpText + validationMessage;
+
+            var formGroup = WrapFormGroup(InputType.Default, content);
+
+            return MvcHtmlString.Create(formGroup);
+        }
+
         #endregion
 
         #region Label
 
         private static MvcHtmlString CreateLabel<TModel, TProperty>(HtmlHelper<TModel> htmlHelper,
-            Expression<Func<TModel, TProperty>> expression,
-            InputType inputType)
+        Expression<Func<TModel, TProperty>> expression,
+        InputType inputType)
         {
             var attributes = new Dictionary<string, object>();
 
@@ -158,6 +183,29 @@ namespace BootstrapHtmlHelpersPackage.Builders
             attributes.SetInputClassAttributesByType(InputType.Default);
 
             return htmlHelper.DropDownListFor(expression, selectList, optionLabel, attributes);
+        }
+
+        public static MvcHtmlString CreateDropDown<TModel, TEnum>(HtmlHelper<TModel> htmlHelper,
+            Expression<Func<TModel, TEnum>> expression,
+            string optionLabel = null,
+            object htmlAttributes = null)
+        {
+            var attributes = HtmlHelper.ObjectToDictionary(htmlAttributes);
+
+            if (htmlAttributes != null)
+            {
+                // Check HTML attributes has specified a class, use them and not our Bootstrap classes.
+                if (!attributes.ContainsKey("class"))
+                {
+                    attributes.SetInputClassAttributesByType(InputType.Default);
+                }
+
+                return htmlHelper.EnumDropDownListFor(expression, optionLabel, attributes);
+            }
+
+            attributes.SetInputClassAttributesByType(InputType.Default);
+
+            return htmlHelper.EnumDropDownListFor(expression, optionLabel, attributes);
         }
 
         #endregion
