@@ -32,9 +32,6 @@ namespace SampleApplication.Web.Models
         [Required, Display(Name = "State")]
         public string State { get; set; }
 
-        [Required, Display(Name = "Country")]
-        public Countries Country { get; set; }
-
         [Required, Display(Name = "File")]
         public string File { get; set; }
 
