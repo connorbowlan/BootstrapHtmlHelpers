@@ -5,6 +5,7 @@
 
 <h1>Bootstrap HTML Helpers Demo/Cheat Sheet</h1>
 <hr />
+<p class="lead">Bootstrap HTML Helpers is a </p>
 <p class="lead">See /Models/SampleModel.cs to review any data annotations creating validation for these examples.</p>
 <p class="lead">See <a href="https://docs.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations?view=netframework-4.7.1">System.ComponentModel.DataAnnotations Namespace</a> for documentation on data annotations.</p>
 <p class="lead">See <a href="https://docs.microsoft.com/en-us/dotnet/api/system.web.mvc.htmlhelper?view=aspnet-mvc-5.2">HtmlHelper Class</a> for documentation on HTML helpers.</p>
@@ -140,8 +141,8 @@
     <hr />
     @using (Html.BeginForm())
     {
-        <h4>SelectList</h4>
+        <h4>List&lt;SelectListItem&gt;</h4>
         @Html.FormGroupFor(x => x.State, ListHelper.States, optionLabel: "Select a state")
-        <pre>Html.FormGroupFor(x => x.State, SelectListHelper.States, optionLabel: "Select a state")</pre>
+        <pre>Html.FormGroupFor(x => x.State, ListHelper.States, optionLabel: "Select a state")</pre>
     }
 </div>

@@ -11,6 +11,14 @@ namespace BootstrapHtmlHelpersPackage.Extensions
     {
         #region FormSubmitButton
 
+        /// <summary>
+        /// Returns an HTML 
+        /// </summary>
+        /// <param name="htmlHelper">The HTML helper instance that this method extends.</param>
+        /// <param name="value">The value and text to be displayed of the form submit button.</param>
+        /// <param name="id">The ID of the form submit button.</param>
+        /// <param name="htmlAttributes">An object that contains the HTML attributes to set for the element.</param>
+        /// <returns></returns>
         public static MvcHtmlString FormSubmitButton(this HtmlHelper htmlHelper, string value, string id = null, object htmlAttributes = null)
         {
             return FormBuilder.CreateFormSubmitButton(htmlHelper, value, id, htmlAttributes);
@@ -20,6 +28,19 @@ namespace BootstrapHtmlHelpersPackage.Extensions
 
         #region FormGroupFor
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TModel">The type of the model.</typeparam>
+        /// <typeparam name="TProperty">The type of the value.</typeparam>
+        /// <param name="htmlHelper">The HTML helper instance that this method extends.</param>
+        /// <param name="expression">An expression that identifies the object that contains the properties to display.</param>
+        /// <param name="inputType"></param>
+        /// <param name="format">A string that is used to format the input.</param>
+        /// <param name="helpText"></param>
+        /// <param name="htmlAttributes">An object that contains the HTML attributes to set for the element.</param>
+        /// <returns></returns>
+        /// <exception cref="InvalidOperationException">The type of <see cref="TProperty"/> is not supported.</exception>
         public static MvcHtmlString FormGroupFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper,
             Expression<Func<TModel, TProperty>> expression,
             InputType inputType = InputType.Default,
@@ -92,14 +113,14 @@ namespace BootstrapHtmlHelpersPackage.Extensions
         }
 
         // TODO: Determine a good way to implement EnumDropDownListFor().
-        //public static MvcHtmlString FormGroupFor<TModel, TEnum>(this HtmlHelper<TModel> htmlHelper,
-        //    Expression<Func<TModel, TEnum>> expression,
-        //    string optionLabel = null,
-        //    string helpText = null,
-        //    object htmlAttributes = null)
-        //{
-        //    return FormBuilder.CreateFormGroup(htmlHelper, expression, optionLabel, helpText, htmlAttributes);
-        //}
+        public static MvcHtmlString FormGroupFor<TModel, TEnum>(this HtmlHelper<TModel> htmlHelper,
+            Expression<Func<TModel, TEnum>> expression,
+            string optionLabel = null,
+            string helpText = null,
+            object htmlAttributes = null)
+        {
+            return FormBuilder.CreateFormGroup(htmlHelper, expression, optionLabel, helpText, htmlAttributes);
+        }
 
         #endregion
     }
